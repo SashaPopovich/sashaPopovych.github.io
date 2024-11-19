@@ -1,1 +1,93 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Mini App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #0088cc;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .item h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+    footer {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Telegram Mini App</h1>
+  </header>
+  <div class="container" id="item-list">
+    <!-- Items will be dynamically inserted here -->
+  </div>
+  <footer>
+    &copy; 2024 Mini App
+  </footer>
+  <script>
+    // Example data for the list
+    const items = [
+      { name: "Element 1", image: "https://via.placeholder.com/50" },
+      { name: "Element 2", image: "https://via.placeholder.com/50" },
+      { name: "Element 3", image: "https://via.placeholder.com/50" },
+      { name: "Element 4", image: "https://via.placeholder.com/50" },
+    ];
+
+    // Function to populate the list
+    function populateList() {
+      const itemList = document.getElementById("item-list");
+
+      items.forEach(item => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "item";
+
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h3>${item.name}</h3>
+        `;
+
+        itemList.appendChild(itemDiv);
+      });
+    }
+
+    // Populate the list on page load
+    window.onload = populateList;
+  </script>
+</body>
+</html>
