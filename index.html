@@ -41,6 +41,11 @@
       margin: 0;
       font-size: 16px;
     }
+    .item p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #666;
+    }
     footer {
       text-align: center;
       margin: 10px 0;
@@ -62,9 +67,9 @@
   <script>
     // Example data for the list
     const items = [
-      { name: "Паштет", image: "pashtet.jpg" },
-      { name: "Тушонка", image: "tuchonka.jpg" },
-      { name: "Ребра", image: "rebra.jpg" },
+      { name: "Паштет", description: "This is the first element.", image: "pashtet.jpg" },
+      { name: "Тушонка", description: "This is the first element.", image: "tuchonka.jpg" },
+      { name: "Ребра", description: "This is the first element.", image: "rebra.jpg" },
     ];
 
     // Function to populate the list
@@ -77,7 +82,10 @@
 
         itemDiv.innerHTML = `
           <img src="${item.image}" alt="${item.name}" class="item-image">
+          <div>
           <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          </div>
         `;
 
         itemList.appendChild(itemDiv);
