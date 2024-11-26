@@ -33,9 +33,9 @@
       border-bottom: 1px solid #ddd;
     }
     .item img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
       margin-right: 15px;
+      height: auto;
     }
     .item h3 {
       margin: 0;
@@ -76,7 +76,7 @@
         itemDiv.className = "item";
 
         itemDiv.innerHTML = `
-          <img src="${item.image}" alt="${item.name}">
+          <img src="${item.image}" alt="${item.name}" class="item-image">
           <h3>${item.name}</h3>
         `;
 
