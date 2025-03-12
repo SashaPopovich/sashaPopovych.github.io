@@ -46,6 +46,11 @@
       font-size: 14px;
       color: #666;
     }
+    .item-price {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
     .item-buttons {
       display: flex;
       align-items: center;
@@ -96,11 +101,12 @@
           <img src="${item.image}" alt="${item.name}" class="item-image">
           <div>
             <h3>${item.name}</h3>
+            <p class="item-price">${item.price} UAH</p>
             <p>${item.description}</p>
             <div class="item-buttons">
-              <button onclick="decrementQuantity('${item.name}')">-</button>
+              <button onclick="decrementQuantity('${item.name}', ${item.quantity})">-</button>
               <span id="quantity-${item.name}">0</span>
-              <button onclick="incrementQuantity('${item.name}')">+</button>
+              <button onclick="incrementQuantity('${item.name}', ${item.quantity})">+</button>
             </div>
           </div>
         `;
@@ -110,14 +116,16 @@
     }
 
     // Function to increment quantity
-    function incrementQuantity(itemName) {
+    function incrementQuantity(itemName, maxQuantity) {
       const quantityElement = document.getElementById(`quantity-${itemName}`);
       let quantity = parseInt(quantityElement.textContent);
-      quantityElement.textContent = quantity + 1;
+      if (quantity < maxQuantity) {
+        quantityElement.textContent = quantity + 1;
+      }
     }
 
     // Function to decrement quantity
-    function decrementQuantity(itemName) {
+    function decrementQuantity(itemName, maxQuantity) {
       const quantityElement = document.getElementById(`quantity-${itemName}`);
       let quantity = parseInt(quantityElement.textContent);
       if (quantity > 0) {
