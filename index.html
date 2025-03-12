@@ -46,6 +46,16 @@
       font-size: 14px;
       color: #666;
     }
+    .item-buttons {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .item-buttons button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
     footer {
       text-align: center;
       margin: 10px 0;
@@ -85,13 +95,34 @@
         itemDiv.innerHTML = `
           <img src="${item.image}" alt="${item.name}" class="item-image">
           <div>
-          <h3>${item.name}</h3>
-          <p>${item.description}</p>
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <div class="item-buttons">
+              <button onclick="decrementQuantity('${item.name}')">-</button>
+              <span id="quantity-${item.name}">0</span>
+              <button onclick="incrementQuantity('${item.name}')">+</button>
+            </div>
           </div>
         `;
 
         itemList.appendChild(itemDiv);
       });
+    }
+
+    // Function to increment quantity
+    function incrementQuantity(itemName) {
+      const quantityElement = document.getElementById(`quantity-${itemName}`);
+      let quantity = parseInt(quantityElement.textContent);
+      quantityElement.textContent = quantity + 1;
+    }
+
+    // Function to decrement quantity
+    function decrementQuantity(itemName) {
+      const quantityElement = document.getElementById(`quantity-${itemName}`);
+      let quantity = parseInt(quantityElement.textContent);
+      if (quantity > 0) {
+        quantityElement.textContent = quantity - 1;
+      }
     }
 
     // Populate the list on page load
