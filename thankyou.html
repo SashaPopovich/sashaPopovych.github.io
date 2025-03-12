@@ -26,6 +26,14 @@
       font-size: 24px;
       color: #0088cc;
     }
+    .order-details {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .order-details p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
     .back-button {
       display: block;
       width: 100%;
@@ -44,12 +52,40 @@
 <body>
   <div class="message">
     <h1>Дякую за замовлення</h1>
+    <div class="order-details" id="order-details">
+      <!-- Order details will be dynamically inserted here -->
+    </div>
     <button class="back-button" onclick="goBack()">Повернутися на головну</button>
   </div>
   <script>
+    function getOrderParams() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('order');
+    }
+
+    function displayOrderDetails() {
+      const orderData = getOrderParams();
+      const decodedOrderData = decodeURIComponent(orderData);
+      const order = JSON.parse(decodedOrderData);
+
+      const orderDetailsDiv = document.getElementById("order-details");
+      order.order.forEach(item => {
+        const itemDetail = document.createElement("p");
+        itemDetail.textContent = `${item.name} - ${item.quantity}`;
+        orderDetailsDiv.appendChild(itemDetail);
+      });
+
+      const totalPriceDetail = document.createElement("p");
+      totalPriceDetail.textContent = `Загальна сума: ${order.totalPrice} UAH`;
+      orderDetailsDiv.appendChild(totalPriceDetail);
+    }
+
     function goBack() {
       window.location.href = "index.html";
     }
+
+    // Display order details on page load
+    window.onload = displayOrderDetails;
   </script>
 </body>
 </html>

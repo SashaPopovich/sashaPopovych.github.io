@@ -149,7 +149,28 @@
 
     // Function to confirm order
     function confirmOrder() {
-      window.location.href = "thankyou.html";
+      const itemList = document.getElementById("item-list").children;
+      const order = [];
+      let totalPrice = 0;
+
+      for (let item of itemList) {
+        const name = item.querySelector("h3").textContent;
+        const price = parseFloat(item.querySelector(".item-price").textContent);
+        const quantity = parseInt(item.querySelector(`#quantity-${name}`).textContent);
+
+        if (quantity > 0) {
+          order.push({ name, quantity, price });
+          totalPrice += price * quantity;
+        }
+      }
+
+      const orderData = {
+        order,
+        totalPrice
+      };
+
+      const encodedOrderData = encodeURIComponent(JSON.stringify(orderData));
+      window.location.href = `thankyou.html?order=${encodedOrderData}`;
     }
 
     // Populate the list on page load
