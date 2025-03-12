@@ -65,17 +65,17 @@
     &copy; 2024 Mini App
   </footer>
   <script>
-    // Function to fetch products from the bot's endpoint
-    async function fetchProducts() {
-      const response = await fetch('http://localhost:5000/products');  // Adjust the endpoint URL
-      const products = await response.json();
-      return products;
+    // Function to get URL parameters
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('data');
     }
 
     // Function to populate the list
-    async function populateList() {
+    function populateList() {
       const itemList = document.getElementById("item-list");
-      const items = await fetchProducts();
+      const data = getUrlParams();
+      const items = JSON.parse(data);
 
       items.forEach(item => {
         const itemDiv = document.createElement("div");
