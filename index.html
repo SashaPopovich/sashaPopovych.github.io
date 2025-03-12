@@ -65,16 +65,17 @@
     &copy; 2024 Mini App
   </footer>
   <script>
-    // Example data for the list
-    const items = [
-      { name: "Паштет", description: "This is the first element.", image: "pashtet.jpg" },
-      { name: "Тушонка", description: "This is the first element.", image: "tuchonka.jpg" },
-      { name: "Ребра", description: "This is the first element.", image: "rebra.jpg" },
-    ];
+    // Function to fetch products from the bot's endpoint
+    async function fetchProducts() {
+      const response = await fetch('http://localhost:5000/products');  // Adjust the endpoint URL
+      const products = await response.json();
+      return products;
+    }
 
     // Function to populate the list
-    function populateList() {
+    async function populateList() {
       const itemList = document.getElementById("item-list");
+      const items = await fetchProducts();
 
       items.forEach(item => {
         const itemDiv = document.createElement("div");
