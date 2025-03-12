@@ -104,9 +104,9 @@
             <p class="item-price">${item.price} UAH</p>
             <p>${item.description}</p>
             <div class="item-buttons">
-              <button onclick="decrementQuantity('${item.name}', ${item.quantity})">-</button>
+              <button onclick="decrementQuantity('${item.name}', ${item.amount})">-</button>
               <span id="quantity-${item.name}">0</span>
-              <button onclick="incrementQuantity('${item.name}', ${item.quantity})">+</button>
+              <button onclick="incrementQuantity('${item.name}', ${item.amount})">+</button>
             </div>
           </div>
         `;
@@ -116,16 +116,16 @@
     }
 
     // Function to increment quantity
-    function incrementQuantity(itemName, maxQuantity) {
+    function incrementQuantity(itemName, maxAmount) {
       const quantityElement = document.getElementById(`quantity-${itemName}`);
       let quantity = parseInt(quantityElement.textContent);
-      if (quantity < maxQuantity) {
+      if (quantity < maxAmount) {
         quantityElement.textContent = quantity + 1;
       }
     }
 
     // Function to decrement quantity
-    function decrementQuantity(itemName, maxQuantity) {
+    function decrementQuantity(itemName, maxAmount) {
       const quantityElement = document.getElementById(`quantity-${itemName}`);
       let quantity = parseInt(quantityElement.textContent);
       if (quantity > 0) {
