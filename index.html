@@ -75,7 +75,8 @@
     function populateList() {
       const itemList = document.getElementById("item-list");
       const data = getUrlParams();
-      const items = JSON.parse(data);
+      const decodedData = decodeURIComponent(data);  // Decode the URL-encoded JSON data
+      const items = JSON.parse(decodedData);
 
       items.forEach(item => {
         const itemDiv = document.createElement("div");
