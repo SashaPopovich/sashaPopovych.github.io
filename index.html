@@ -61,6 +61,19 @@
       padding: 5px 10px;
       font-size: 14px;
     }
+    .confirm-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0;
+      background-color: #0088cc;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     footer {
       text-align: center;
       margin: 10px 0;
@@ -76,6 +89,7 @@
   <div class="container" id="item-list">
     <!-- Items will be dynamically inserted here -->
   </div>
+  <button class="confirm-button" onclick="confirmOrder()">Підтвердити замовлення</button>
   <footer>
     &copy; 2024 Mini App
   </footer>
@@ -131,6 +145,11 @@
       if (quantity > 0) {
         quantityElement.textContent = quantity - 1;
       }
+    }
+
+    // Function to confirm order
+    function confirmOrder() {
+      window.location.href = "thankyou.html";
     }
 
     // Populate the list on page load
